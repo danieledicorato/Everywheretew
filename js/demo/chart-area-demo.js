@@ -27,14 +27,30 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+//sezione per acquisizion dati cluster da server
+
+var clusters = []
+let lab = []
+let tot = []
+
+$.get("http://151.0.197.14:10000/api/clusters/all", function(data){
+  for (const key in data) {
+    lab.push(data[key]["name"]) //vettore nomi cluster
+    tot.push(data[key]["userId"].length) //vettore tot utenti per cluster
+    clusters.push({"name": data[key]["name"], "totalUsers": data[key]["userId"].length, "usersId": data[key]["userId"]}) //mappa cluster
+  }
+});
+
+  console.log(clusters)
+
+
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Gennaio", "febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-    datasets: [{
-      label: "Totale acquisti",
+    datasets: {
+      label: "Popolazione cluster",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -46,10 +62,14 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
+      data: [1,3,5,78,3,24,54],
+    },
   },
   options: {
+    parsing: {
+      xAxisKey: 'name',
+      yAxisKey: 'totalUsers'
+    },
     maintainAspectRatio: false,
     layout: {
       padding: {
