@@ -65,11 +65,9 @@
                     <span>Cluster inseriti</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-white py-2 collapse-inner rounded" id="menu-div">
                         <h6 class="collapse-header">Cluster presenti</h6>
-                        <a class="collapse-item " href="">Cluster uno</a>
-                        <a class="collapse-item" href="">Cluster due</a>
-                        <a class="collapse-item" href="">Crea nuovo cluster</a>
+                        
                     </div>
                 </div>
             </li>
@@ -476,6 +474,13 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-bar-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        $.get("http://151.0.197.14:10000/api/clusters/all", function(data){
+            for(key in data){
+                $('#menu-div').append('<a class="collapse-item " href="">'+ data[key]['name'] +'</a>');
+            }
+        });
+    </script>
 
 </body>
 

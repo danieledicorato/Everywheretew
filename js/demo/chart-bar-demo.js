@@ -57,7 +57,7 @@ $.get("http://151.0.197.14:10000/api/clusters/all", function(data){
   }
 
   var ctx = document.getElementById("barChart");
-  var barChart = new Chart(ctx, {
+  var indexBarChart = new Chart(ctx, {
     type: 'bar',
     data: data,
     backgroundColor: "#4e73df",
@@ -123,24 +123,75 @@ $.get("http://151.0.197.14:10000/api/clusters/all", function(data){
     }
   }) 
 });
-  console.log(lab)
-  console.log(tot)
-  console.log(clusters)
 
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+var ctx = document.getElementById("detailChart");
+var indexBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno"],
     datasets: [{
-      label: "Visualizzazioni",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      label: "Sesso degli utenti nel cluster",
+      data: [1,1],
+      backgroundColor: [randomColorGenerator(), randomColorGenerator()]
     }],
-  },
-  
-});
+    labels: ['Maschio', 'Donna'],
+    options: {
+      title: {
+        display: true,
+        text: 'Popolazione clusters'
+      },
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          left: 10,
+          right: 25,
+          top: 25,
+          bottom: 0
+        }
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false,
+            drawBorder: false
+          },
+          ticks: {
+            maxTicksLimit: 6
+          },
+          maxBarThickness: 25,
+        }],
+        yAxes: [{
+          ticks: {
+            min: 0,
+            max: 15000,
+            maxTicksLimit: 5,
+            padding: 10,
+          },
+          gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+          }
+        }],
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+      },
+    }
+  }
+})
