@@ -1,0 +1,20 @@
+<div class="text-center mt-5">
+  <form class="form-signin">
+    <img class="mb-4" src="https://everywheretew.it/wp-content/uploads/2021/07/LOGO_V2.png" alt=""  height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+    <input  type="email" id="userId" name="userId" class="form-control" placeholder="Email address" [(ngModel)] = "userid" required autofocus>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Password" [(ngModel)] = "password" required >
+    <!--
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    -->
+    <button (click) = onSubmit() class="mt-4 btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <div class="alert alert-danger mt-2" role="alert" *ngIf='errorMsg.length > 1'>
+      {{errorMsg}}
+    </div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+  </form>
+</div>
