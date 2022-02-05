@@ -32,7 +32,11 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-          <app-chart-torta-prov-visualizzazioni></app-chart-torta-prov-visualizzazioni>
+          <div *ngIf="isLoading; else elseBlockTorta" class="progress mr-3 ml-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+          </div>
+          <ng-template #elseBlockTorta><app-chart-torta-prov-visualizzazioni [clusterSelected]="clusterSelected"></app-chart-torta-prov-visualizzazioni></ng-template>
+          <hr>
         </div>
       </div>
     </div>
@@ -47,53 +51,21 @@
           <thead>
           <tr>
             <th>Nome prodotto</th>
-            <th>Codice</th>
+            <th>Tags</th>
             <th>Paese Provenienza</th>
             <th>Eta media acquisto</th>
             <th>Data pubblicazione</th>
-            <th>Vendità totale</th>
+            <th>Ricavi Totali</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Prdotto uno</td>
-            <td>COD1</td>
-            <td>Andria</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>euro: 320,800</td>
-          </tr>
-          <tr>
-            <td>Prdotto due</td>
-            <td>COD2</td>
-            <td>Corato</td>
-            <td>37</td>
-            <td>2011/04/25</td>
-            <td>euro: 50,800</td>
-          </tr>
-          <tr>
-            <td>Prdotto tre</td>
-            <td>COD4</td>
-            <td>Bari</td>
-            <td>55</td>
-            <td>2011/04/25</td>
-            <td>euro: 500,800</td>
-          </tr>
-          <tr>
-            <td>Prdotto sette</td>
-            <td>COD7</td>
-            <td>Andria</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>euro: 320,800</td>
-          </tr>
-          <tr>
-            <td>Prdotto speciale</td>
-            <td>CODSPECIALE</td>
-            <td>Andria</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>euro: 10000000000000,800</td>
+          <tr *ngFor="let prodotto of clusterSelected.Products">
+            <td>{{prodotto.Name}}</td>
+            <td>{{prodotto.Tags}}</td>
+            <td>{{prodotto.Country}}</td>
+            <td>{{prodotto.AvgAge}}</td>
+            <td>{{prodotto.PublishDate}}</td>
+            <td>{{prodotto.TotalEarnings}} EURO</td>
           </tr>
           </tbody>
         </table>

@@ -40,10 +40,6 @@ export class ClusterComponent implements OnInit {
     return temp;
   }
 
-  update():void{
-    this.ngOnInit();
-  }
-
 }
 
 export class ClusterModel {
@@ -56,4 +52,18 @@ export class ClusterModel {
   Facebook = 0;
   Twitter = 0;
   Referral = 0;
+  Products: Product[] = [];
+}
+
+export class Product{
+  Name:           string = ""
+  Tags  :         string[] = []
+  Description  :  string = ""
+  ConversationId: string = ""
+  ExternalId   :  string = ""
+  Source   :      string = ""
+  Country  :      string = ""
+  AvgAge   :      number = 0
+  TotalEarnings:  number = 0
+  PublishDate :   string = ""
 }
