@@ -12,7 +12,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  server = 'localhost';
+  //server = 'localhost';
+  server = '151.0.197.14';
   port = '10000';
   clusterSelected: ClusterModel = new ClusterModel();
 

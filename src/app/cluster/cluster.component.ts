@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
 })
 export class ClusterComponent implements OnInit {
   @Input() clusterSelected: ClusterModel = new ClusterModel();
-  server = 'localhost';
+  server = '151.0.197.14';
+  //server = 'localhost';
   port = '10000';
   isLoading: boolean = false;
 

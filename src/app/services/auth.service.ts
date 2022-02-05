@@ -7,8 +7,8 @@ import {Observable} from "rxjs";
 })
 
 export class AuthService {
-  //server = '151.0.197.14';
-  server = 'localhost';
+  server = '151.0.197.14';
+  //server = 'localhost';
   port = '10000';
   constructor(private httpClient: HttpClient) { }
   authenticate(UserId: string, Password: string): Observable<User> {
