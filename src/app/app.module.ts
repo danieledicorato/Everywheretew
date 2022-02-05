@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ClusterComponent } from './cluster/cluster.component';
+import {ChartModule} from "angular2-chartjs";
+import { ChartBarreUtentiPerClusterComponent } from './chart-barre-utenti-per-cluster/chart-barre-utenti-per-cluster.component';
+import { ChartTortaProvVisualizzazioniComponent } from './chart-torta-prov-visualizzazioni/chart-torta-prov-visualizzazioni.component';
+import { ChartBarreUtentiSessoComponent } from './chart-barre-utenti-sesso/chart-barre-utenti-sesso.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +27,18 @@ import { ClusterComponent } from './cluster/cluster.component';
     LoginComponent,
     SidebarComponent,
     HomepageComponent,
-    ClusterComponent
+    ClusterComponent,
+    ChartBarreUtentiPerClusterComponent,
+    ChartTortaProvVisualizzazioniComponent,
+    ChartBarreUtentiSessoComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

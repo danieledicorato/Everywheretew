@@ -3,6 +3,8 @@ import {AuthService, User} from "../services/auth.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ClusterModel} from "../cluster/cluster.component";
+import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +14,7 @@ import {ClusterModel} from "../cluster/cluster.component";
 export class SidebarComponent implements OnInit {
   server = 'localhost';
   port = '10000';
+  clusterSelected: ClusterModel = new ClusterModel();
 
   pageIndex: number = 0;
   clusterList: ClusterModel[] = [];
@@ -23,7 +26,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changePageIndex(index: number): void {
+  timeout(ms : number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async changePageIndex(index: number): Promise<void> {
+    //usato solo per far ricreare il componente cluster
+    this.pageIndex = 0
+    await this.timeout(0);
     this.pageIndex = index
   }
 

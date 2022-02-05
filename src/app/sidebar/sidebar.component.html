@@ -2,8 +2,7 @@
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <div class="sidebar-brand d-flex align-items-center justify-content-center sidebar-brand-text mx-3">EverywhereTEW<sup></sup></div>
-
+    <img class="p-3" src="https://everywheretew.it/wp-content/uploads/2021/07/LOGO_V2.png">
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
@@ -27,11 +26,14 @@
       </a>
 
       <div *ngIf="isLoading" class="progress mr-3 ml-3">
-        <div *ngIf="isLoading" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
       </div>
 
       <div *ngIf="clusterList.length>0 && !isLoading" class="bg-white rounded list-group ml-3 mr-3 w-auto">
-        <a *ngFor="let clustModel of clusterList" (click)="changePageIndex(1)" class="list-group-item list-group-item-action btn p-1"> {{clustModel.name}} </a>
+        <a *ngFor="let clustModel of clusterList"
+           (click)="
+              changePageIndex(1);
+              clusterSelected=clustModel;" class="list-group-item list-group-item-action btn p-1"> {{clustModel.name}} </a>
       </div>
     </li>
 
@@ -48,14 +50,14 @@
       <!-- End of Topbar -->
 
       <app-dashboard *ngIf="pageIndex==0"></app-dashboard>
-      <app-cluster *ngIf="pageIndex==1"></app-cluster>
+      <app-cluster [clusterSelected]="clusterSelected" *ngIf="pageIndex==1"></app-cluster>
       <app-error *ngIf="pageIndex==-1"></app-error>
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
       <div class="container my-auto">
         <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Everywheretew 2022</span>
+          <span>Copyright &copy; Ing Del Software Gruppo 48</span>
         </div>
       </div>
     </footer>
